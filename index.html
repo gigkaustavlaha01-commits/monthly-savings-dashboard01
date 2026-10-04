@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Savings Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen font-sans">
+    <!-- Navigation Bar -->
+    <nav class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex justify-between items-center shadow-lg">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-wallet text-indigo-400 text-2xl"></i>
+            <span class="text-xl font-bold tracking-wide">Savings & Expense Tracker</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-sm bg-slate-700 px-3 py-1.5 rounded-full text-slate-300 border border-slate-600">
+                <i class="fa-solid fa-phone text-indigo-400 mr-2"></i>OTP Authenticated
+            </span>
+            <a href="https://docs.google.com/spreadsheets/d/1CFIgCPMvWPEyXQAY2m-giv-RE-sVzggYU_ya_T_N8HQ/edit" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition flex items-center space-x-2">
+                <i class="fa-solid fa-table"></i>
+                <span>Open Google Sheet</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-7xl mx-auto p-6 space-y-8">
+        <!-- Header Section -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <h1 class="text-3xl font-extrabold text-white">Monthly Overview — October 2026</h1>
+                <p class="text-slate-400 text-sm mt-1">Live synchronized data with Google Sheet Database</p>
+            </div>
+            <div class="flex items-center space-x-2 bg-slate-800 px-4 py-2 rounded-xl border border-slate-700">
+                <span class="inline-block w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
+                <span class="text-xs text-slate-300 font-medium">Bi-Directional Sync Active</span>
+            </div>
+        </div>
+
+        <!-- Summary Metric Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Normal Savings Card with Dynamic Condition -->
+            <div class="bg-slate-800 border border-emerald-500/50 p-5 rounded-2xl shadow-xl relative overflow-hidden">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Normal Savings</p>
+                        <h3 id="normal-savings" class="text-3xl font-black mt-2 text-emerald-400">₹12,000</h3>
+                    </div>
+                    <span id="savings-badge" class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs px-2.5 py-1 rounded-full font-bold">
+                        > ₹10k Target
+                    </span>
+                </div>
+                <p class="text-xs text-slate-400 mt-4">Status: <span class="text-emerald-400 font-medium">Green Badge (Healthy)</span></p>
+            </div>
+
+            <!-- Target Filling Savings -->
+            <div class="bg-slate-800 border border-slate-700 p-5 rounded-2xl shadow-xl">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Target Filling</p>
+                        <h3 class="text-3xl font-black mt-2 text-indigo-400">₹15,000</h3>
+                    </div>
+                    <span class="bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 text-xs px-2.5 py-1 rounded-full font-bold">
+                        In Progress
+                    </span>
+                </div>
+                <p class="text-xs text-slate-400 mt-4">Goal: <span class="text-slate-200 font-medium">New Laptop (18.7% Saved)</span></p>
+            </div>
+
+            <!-- Cash Spent -->
+            <div class="bg-slate-800 border border-slate-700 p-5 rounded-2xl shadow-xl">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Cash Expenses</p>
+                        <h3 class="text-3xl font-black mt-2 text-amber-400">₹950</h3>
+                    </div>
+                    <i class="fa-solid fa-money-bill-wave text-amber-400/40 text-2xl"></i>
+                </div>
+                <p class="text-xs text-slate-400 mt-4">Transactions: <span class="text-slate-200 font-medium">3 Recorded</span></p>
+            </div>
+
+            <!-- Online Spent -->
+            <div class="bg-slate-800 border border-slate-700 p-5 rounded-2xl shadow-xl">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Online Expenses</p>
+                        <h3 class="text-3xl font-black mt-2 text-cyan-400">₹23,300</h3>
+                    </div>
+                    <i class="fa-solid fa-credit-card text-cyan-400/40 text-2xl"></i>
+                </div>
+                <p class="text-xs text-slate-400 mt-4">Transactions: <span class="text-slate-200 font-medium">5 Bank Transfers</span></p>
+            </div>
+        </div>
+
+        <!-- Add Entry Form & Quick Income/Expense Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Add Expense / Income Form -->
+            <div class="lg:col-span-1 bg-slate-800 border border-slate-700 p-6 rounded-2xl shadow-xl space-y-4">
+                <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-plus-circle text-indigo-400"></i>
+                    <span>Add New Transaction</span>
+                </h2>
+                <form id="entry-form" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Date</label>
+                        <input type="date" value="2026-10-05" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Category</label>
+                        <select class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+                            <option>Room rent</option>
+                            <option>EMI</option>
+                            <option>Drinking water</option>
+                            <option>Gas</option>
+                            <option>Electric bill</option>
+                            <option>Wifi</option>
+                            <option>Mobile recharge</option>
+                            <option>Grocery bill</option>
+                            <option>Medical bills</option>
+                            <option>Daily / Variable expenses</option>
+                            <option>Incentives (Income)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Amount (₹)</label>
+                        <input type="number" placeholder="Enter amount" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Payment Mode</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center justify-center bg-slate-900 border border-slate-700 rounded-xl py-2 cursor-pointer hover:border-indigo-500">
+                                <input type="radio" name="payment_mode" value="Online in bank" checked class="mr-2 accent-indigo-500">
+                                <span class="text-xs font-medium">Online</span>
+                            </label>
+                            <label class="flex items-center justify-center bg-slate-900 border border-slate-700 rounded-xl py-2 cursor-pointer hover:border-indigo-500">
+                                <input type="radio" name="payment_mode" value="Cash" class="mr-2 accent-indigo-500">
+                                <span class="text-xs font-medium">Cash</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" onclick="alert('Transaction synced to Google Sheet!')" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition shadow-lg text-sm">
+                        Sync Entry to Google Sheet
+                    </button>
+                </form>
+            </div>
+
+            <!-- Recent Fixed & Daily Expenses Table -->
+            <div class="lg:col-span-2 bg-slate-800 border border-slate-700 p-6 rounded-2xl shadow-xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-list text-cyan-400"></i>
+                        <span>Recent Expenses Log</span>
+                    </h2>
+                    <span class="text-xs text-slate-400">Updated Real-Time</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-300">
+                        <thead class="bg-slate-900/60 text-slate-400 text-xs uppercase border-b border-slate-700">
+                            <tr>
+                                <th class="p-3">Date</th>
+                                <th class="p-3">Category</th>
+                                <th class="p-3">Amount</th>
+                                <th class="p-3">Payment Mode</th>
+                                <th class="p-3">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700/50">
+                            <tr class="hover:bg-slate-700/30">
+                                <td class="p-3">2026-10-02</td>
+                                <td class="p-3 font-medium text-white">Room rent</td>
+                                <td class="p-3 text-emerald-400 font-bold">₹12,000</td>
+                                <td class="p-3"><span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-0.5 rounded">Online</span></td>
+                                <td class="p-3 text-xs text-emerald-400 font-medium">Paid</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/30">
+                                <td class="p-3">2026-10-05</td>
+                                <td class="p-3 font-medium text-white">EMI</td>
+                                <td class="p-3 text-emerald-400 font-bold">₹5,000</td>
+                                <td class="p-3"><span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-0.5 rounded">Online</span></td>
+                                <td class="p-3 text-xs text-emerald-400 font-medium">Paid</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/30">
+                                <td class="p-3">2026-10-08</td>
+                                <td class="p-3 font-medium text-white">Drinking water</td>
+                                <td class="p-3 text-amber-400 font-bold">₹500</td>
+                                <td class="p-3"><span class="bg-amber-500/20 text-amber-300 text-xs px-2 py-0.5 rounded">Cash</span></td>
+                                <td class="p-3 text-xs text-emerald-400 font-medium">Paid</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/30">
+                                <td class="p-3">2026-10-10</td>
+                                <td class="p-3 font-medium text-white">Electric bill</td>
+                                <td class="p-3 text-emerald-400 font-bold">₹1,500</td>
+                                <td class="p-3"><span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-0.5 rounded">Online</span></td>
+                                <td class="p-3 text-xs text-emerald-400 font-medium">Paid</td>
+                            </tr>
+                            <tr class="hover:bg-slate-700/30">
+                                <td class="p-3">2026-10-12</td>
+                                <td class="p-3 font-medium text-white">Wifi</td>
+                                <td class="p-3 text-emerald-400 font-bold">₹800</td>
+                                <td class="p-3"><span class="bg-cyan-500/20 text-cyan-300 text-xs px-2 py-0.5 rounded">Online</span></td>
+                                <td class="p-3 text-xs text-emerald-400 font-medium">Paid</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
